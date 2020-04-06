@@ -41,10 +41,13 @@ Page({
             const data = res.data
             console.log(data)
             if (data.meta.code == 0) {
-                data.data.forEach(n => n.goods.thumb_url = App.renderImage(n.goods.images[0] && n.goods.images[0].path))
+                // data.data.forEach(n => n.goods.thumb_url = App.renderImage(n.goods.images[0] && n.goods.images[0].path))         
+              for (var i = 0; i < data.data.items.length; i++) {
+                data.data.items[i].goods.thumb_url = App.renderImage(data.data.items[i].goods.images[0] && data.data.items[i].goods.images[0].path);
+              }
                 this.setData({
-                    'carts.items': data.data,
-                    'prompt.hidden': data.data.length,
+                    'carts.items': data.data.items,
+                    'prompt.hidden': data.data.items.length,
                 })
             }
         })

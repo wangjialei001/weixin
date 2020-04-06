@@ -58,7 +58,10 @@ Page({
             const data = res.data
         	console.log(data)
         	if (data.meta.code == 0) {
-                data.data.items.forEach(n => n.path = App.renderImage(n.images[0].path))
+                //data.data.items.forEach(n => n.path = App.renderImage(n.images[0].path))
+            for (var i = 0; i < data.data.items.length;i++){
+              data.data.items[i].path = App.renderImage(data.data.items[i].images[0].path);
+            }
         		this.setData({
                     images: data.data.items
                 })
